@@ -1,0 +1,22 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+constexpr int AMERICANO = 4500;
+constexpr int CAFELATTE = 5000;
+
+int solution(vector<string> order) {
+    int answer = 0;
+    for(string coffee : order)
+    {
+        if(coffee.find("l") != string::npos)
+        {
+            answer += CAFELATTE;
+        } else
+        {
+            answer += AMERICANO;
+        }
+    }
+    return answer;
+}

@@ -1,0 +1,14 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int a, int b) {
+    const string a_str = to_string(a);
+    const string b_str = to_string(b);
+    
+    const int a_b = stoi(a_str + b_str);
+    const int b_a = stoi(b_str + a_str);
+    
+    return a_b < b_a ? b_a : a_b;
+}
