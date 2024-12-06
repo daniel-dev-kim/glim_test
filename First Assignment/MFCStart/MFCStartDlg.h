@@ -3,7 +3,11 @@
 //
 
 #pragma once
-
+constexpr int X_SIGN_SIZE = 10;
+constexpr int TEXT_POSITION = 15;
+constexpr int BASE_CIRCLE_SIZE = 10;
+constexpr int CIRCLE_SIZE_DELTA = 30;
+constexpr int CIRCLE_COLOR_MAX = 200;
 
 // CMFCStartDlg dialog
 class CMFCStartDlg : public CDialogEx

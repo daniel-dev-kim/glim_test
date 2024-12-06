@@ -196,8 +196,8 @@ void CMFCStartDlg::OnBnClickedButtonDraw()
 	unsigned char* fm = reinterpret_cast<unsigned char*>(m_image.GetBits());
 	memset(fm, 0xFF, abs(pitch) * m_nImageHeight);
 
-	m_radius = rand() % 30 + 10;
-	m_color = rand() % 200;
+	m_radius = rand() % CIRCLE_SIZE_DELTA + BASE_CIRCLE_SIZE;
+	m_color = rand() % CIRCLE_COLOR_MAX;
 
 	drawCircle(fm, m_x1, m_y1, m_radius, m_color);
 
@@ -271,8 +271,7 @@ void CMFCStartDlg::OnBnClickedButtonAction()
 	}
 }
 
-constexpr int XSIZE = 10;
-constexpr int TEXTPOSITION = 15;
+
 
 void CMFCStartDlg::OnBnClickedButtonOpen()
 {
@@ -292,14 +291,14 @@ void CMFCStartDlg::OnBnClickedButtonOpen()
 
 	int adjustedCenterX = m_nImageStart + centerX;
 	int adjustedCenterY = m_nImageStart + centerY;
-	dc.MoveTo(adjustedCenterX - XSIZE, adjustedCenterY - XSIZE);
-	dc.LineTo(adjustedCenterX + XSIZE, adjustedCenterY + XSIZE);
-	dc.MoveTo(adjustedCenterX - XSIZE, adjustedCenterY + XSIZE);
-	dc.LineTo(adjustedCenterX + XSIZE, adjustedCenterY - XSIZE);
+	dc.MoveTo(adjustedCenterX - X_SIGN_SIZE, adjustedCenterY - X_SIGN_SIZE);
+	dc.LineTo(adjustedCenterX + X_SIGN_SIZE, adjustedCenterY + X_SIGN_SIZE);
+	dc.MoveTo(adjustedCenterX - X_SIGN_SIZE, adjustedCenterY + X_SIGN_SIZE);
+	dc.LineTo(adjustedCenterX + X_SIGN_SIZE, adjustedCenterY - X_SIGN_SIZE);
 
 	CString coordText;
 	coordText.Format(_T("(%d, %d)"), centerX, centerY);
-	dc.TextOutW(adjustedCenterX + TEXTPOSITION, adjustedCenterY + TEXTPOSITION, coordText);
+	dc.TextOutW(adjustedCenterX + TEXT_POSITION, adjustedCenterY + TEXT_POSITION, coordText);
 
 	m_image.Destroy();
 }
@@ -335,3 +334,4 @@ void CMFCStartDlg::findCircleCenter(int& centerX, int& centerY)
 	centerX = totalX / count;
 	centerY = totalY / count;
 }
+
